@@ -1,0 +1,44 @@
+<!-- <form >
+    <label> product Name <input type="text"  placeholder="product name"></label><br>
+    <label> product Brand<input type="text" formControlName="productBrand" placeholder="product brand"></label><br>
+    <label> product Price<input type="number" formControlName="productPrice" placeholder="product price"></label><br>
+    <label> product Rating<input type="number" formControlName="productRating" placeholder="product rating.."></label><br>
+    <button type="submit">confirm</button>
+</form> -->
+
+
+<form class="example-form" [formGroup]="order" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>product Name</mat-label>
+    <input formControlName="productName" matInput placeholder="Ex. mobile">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>product Brand</mat-label>
+    <input formControlName="productBrand" matInput placeholder="Ex. brand">
+  </mat-form-field>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>product Price</mat-label>
+          <input formControlName="productPrice" type="number" matInput placeholder="Ex. 1000">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>product Rating </mat-label>
+          <input formControlName="productRating" type="number" matInput placeholder="Ex. 3.5" />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="productDescription" matInput #message maxlength="250" placeholder="Ex.camera is good..."></textarea>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+  <button type="submit" *ngIf="orderId" [disabled]="order.invalid" mat-raised-button color="primary">UPDATE</button>
+  <button type="submit" *ngIf="!orderId" [disabled]="order.invalid" mat-raised-button color="primary">CONFIRM</button>
+
+</form>

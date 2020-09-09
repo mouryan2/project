@@ -1,0 +1,49 @@
+<div class="heading">
+  PRODUCT DETAILS
+</div>
+
+<table mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> NAME </th>
+    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Brand">
+    <th mat-header-cell *matHeaderCellDef> BRAND </th>
+    <td mat-cell *matCellDef="let element"> {{element.productBrand}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Price">
+    <th mat-header-cell *matHeaderCellDef> PRICE </th>
+    <td mat-cell *matCellDef="let element"> {{element.productPrice | currency}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Rating">
+    <th mat-header-cell *matHeaderCellDef> RATING </th>
+    <td mat-cell *matCellDef="let element"> {{element.productRating }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+    <td mat-cell *matCellDef="let element"> {{element.productDescription }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> ACTION </th>
+    <td mat-cell *matCellDef="let element" class="action-link">
+      <button [routerLink]="['/order',element._id]" routerLinkActive="router-link-active" mat-raised-button
+        color="accent">update</button> |
+      <button (click)="deleteOrder(element._id)" mat-raised-button color="warn">delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
