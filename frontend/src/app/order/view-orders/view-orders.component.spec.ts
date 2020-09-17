@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ViewOrdersComponent } from './view-orders.component';
-import { OrderService } from 'src/app/shared/order.service';
-import { Order } from 'src/app/shared/order.model';
+import { OrderService } from 'src/app/shared/services/order.service';
+import { Order } from 'src/app/shared/models/order.model';
 import { Observable, of } from 'rxjs';
 
 describe('ViewOrdersComponent', () => {

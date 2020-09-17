@@ -4,6 +4,8 @@
     
     <a class="example-spacer" mat-button routerLink="/view" routerLinkActive="active"> <span class="data">VIEW</span> </a>
     
+    <a class="logout" mat-button *ngIf="loggedIn" (click)="logout()" > <span class="data">LOG OUT</span> </a>
+   
     <!-- <button mat-icon-button >
         <mat-icon>CREATE</mat-icon>
       </button> -->

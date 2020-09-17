@@ -4,11 +4,9 @@ const jwt = require('jsonwebtoken');
 const signUp = async (req, res) => {
 
     try {
-        let { userId, password } = req.body;
-       // console.log(userId,password);
+        let { password } = req.body;
         password = await bcrypt.hash(password, 15);
-       // console.log(password);
-        let user = new User({ userId, password });
+        let user = new User({ ...req.body, password });
         let response = await user.save();
         res.status(200).send({
             "message": response.userId + " " + 'registered successfully'
@@ -26,8 +24,8 @@ const signIn = async (req, res) => {
         if (!valid) {
             throw new Error("password does not matched")
         }
-        const jsonwebtoken = jwt.sign({ id: userId }, 'CISCO_MINDTREE', { expiresIn: '4000000' });
-        res.status(200).send({ "token": jsonwebtoken });
+        const jsonwebtoken = jwt.sign({ userId, role: user.role }, 'CISCO_MINDTREE', { expiresIn: '4000000' });
+        res.status(200).send({ "token": jsonwebtoken, "userId": user.userId, "expiresIn": 4000000, "role": user.role });
     } catch (error) {
         console.log(error.message);
         res.status(400).send({ "error": error.message });

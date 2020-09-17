@@ -1,16 +1,18 @@
 const jwt = require('jsonwebtoken');
 
-const verify_token = (req, res, next) => {
+const verify_token = (req, role_user='admin') => {
 
     try {
         if (!req.headers.authorization) {
             throw new Error("auth token is missing")
         }
         const token = req.headers.authorization.split('Bearer')[1].trim();
-        jwt.verify(token, 'CISCO_MINDTREE');
-        return next();
+        let { role } = jwt.verify(token, 'CISCO_MINDTREE');
+        if (role_user !== role&&role_user!=='admin') {
+            throw new Error("authentication denied")
+        }
     } catch (error) {
-        res.status(400).send({ "error": error.message });
+        throw new Error(error);
     }
 }
 module.exports = { verify_token }

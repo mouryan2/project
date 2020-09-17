@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const utility = require('../utility/verify_token');
 const OrderController = require("../controller/OrderController")
 
 router.post('/', OrderController.createOrder);

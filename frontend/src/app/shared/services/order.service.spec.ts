@@ -2,7 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { OrderService } from './order.service';
-import { Order } from './order.model';
+import { Order } from '../models/order.model';
 
 describe('OrderService', () => {
 

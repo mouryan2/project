@@ -1,6 +1,7 @@
-import { Order } from './../../shared/order.model';
+import { AuthService } from './../../shared/services/auth.service';
+import { Order } from '../../shared/models/order.model';
 import { Component, OnInit, ViewChild, DoCheck, OnChanges } from '@angular/core';
-import { OrderService } from 'src/app/shared/order.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-view-orders',
@@ -11,20 +12,24 @@ export class ViewOrdersComponent implements OnInit {
 
   // displayedColumns: string[] = ['productName', 'productPrice'];
   orders: Order[] = [];
-
-  constructor(private orderService: OrderService) {}
+  role: string = '';
+  constructor(private orderService: OrderService, private authService: AuthService) { }
 
   displayedColumns: string[] = ['name', 'Brand', 'Price', 'Rating', 'Description', 'action'];
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.role = user.role;
+    })
     this.orderDetails();
+
   }
 
   async deleteOrder(id: string) {
-   await this.orderService.deleteOrder(id)
+    await this.orderService.deleteOrder(id)
       .subscribe(result => {
-        console.log(result);
+        if (result)
+          this.orderDetails();
       })
-    this.orderDetails();
   }
 
   orderDetails() {

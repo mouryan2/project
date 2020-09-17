@@ -1,7 +1,7 @@
-import { OrderService } from './../../shared/order.service';
+import { OrderService } from '../../shared/services/order.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Order } from 'src/app/shared/order.model';
+import { Order } from 'src/app/shared/models/order.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
